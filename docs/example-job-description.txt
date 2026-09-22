@@ -1,0 +1,31 @@
+Senior Full Stack Engineer — FinTech Startup (London / Remote)
+
+About the role
+We are looking for a Senior Full Stack Engineer to join our growing engineering team. You will work on our core banking platform, building robust and scalable APIs and modern frontend interfaces that serve thousands of daily active users.
+
+Your responsibilities
+- Design and build RESTful APIs using .NET Core (C#) following clean architecture principles
+- Build responsive React and TypeScript frontends using Next.js
+- Architect and maintain microservices deployed in Docker and Kubernetes
+- Set up and maintain CI/CD pipelines using GitHub Actions
+- Optimise database queries in PostgreSQL and implement Redis caching strategies
+- Work closely with product and design teams in an agile environment
+- Conduct code reviews and mentor junior team members
+- Contribute to cloud infrastructure on AWS
+
+Requirements
+- 4+ years of software engineering experience
+- Strong proficiency in C# and .NET Core
+- Solid React and TypeScript experience
+- REST API design and microservices architecture
+- Docker and Kubernetes for containerised deployments
+- CI/CD pipeline experience (GitHub Actions preferred)
+- PostgreSQL and Redis knowledge
+- AWS cloud platform experience
+- Excellent written and verbal communication
+
+Nice to have
+- Experience with GraphQL
+- Knowledge of event-driven architecture (Kafka, RabbitMQ)
+- Contributions to open source projects
+- Experience in financial services or regulated environments
