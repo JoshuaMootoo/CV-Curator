@@ -21,3 +21,7 @@ export type ContactData = z.infer<typeof contactSchema>;
 export function contactTitle(data: ContactData): string {
   return data.label || `${data.type}: ${data.value}`;
 }
+
+export function contactSummary(data: ContactData): string {
+  return data.value;
+}

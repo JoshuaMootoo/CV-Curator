@@ -9,3 +9,7 @@ export type InterestData = z.infer<typeof interestSchema>;
 export function interestTitle(data: InterestData): string {
   return data.text;
 }
+
+export function interestSummary(): string {
+  return "";
+}

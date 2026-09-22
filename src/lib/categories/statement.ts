@@ -10,3 +10,7 @@ export type StatementData = z.infer<typeof statementSchema>;
 export function statementTitle(data: StatementData): string {
   return data.title;
 }
+
+export function statementSummary(data: StatementData): string {
+  return data.text.length > 100 ? `${data.text.slice(0, 100)}...` : data.text;
+}

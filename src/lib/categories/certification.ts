@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { yearMonthSchema } from "./common";
+import { yearMonthSchema, formatYearMonth } from "./common";
 
 export const certificationSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -12,4 +12,8 @@ export type CertificationData = z.infer<typeof certificationSchema>;
 
 export function certificationTitle(data: CertificationData): string {
   return `${data.name}, ${data.issuer}`;
+}
+
+export function certificationSummary(data: CertificationData): string {
+  return formatYearMonth(data.date);
 }

@@ -10,3 +10,7 @@ export type SkillData = z.infer<typeof skillSchema>;
 export function skillTitle(data: SkillData): string {
   return `${data.name} (${data.group})`;
 }
+
+export function skillSummary(data: SkillData): string {
+  return data.group;
+}

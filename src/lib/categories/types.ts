@@ -33,4 +33,6 @@ export interface CategoryConfig<Data = unknown> {
   schema: z.ZodType<Data>;
   fields: FieldConfig[];
   deriveTitle: (data: Data) => string;
+  /** One-line summary shown on the library card, below the title. */
+  deriveSummary: (data: Data) => string;
 }

@@ -10,3 +10,7 @@ export type HeaderData = z.infer<typeof headerSchema>;
 export function headerTitle(data: HeaderData): string {
   return data.fullName || "Header";
 }
+
+export function headerSummary(data: HeaderData): string {
+  return data.headline ?? "";
+}

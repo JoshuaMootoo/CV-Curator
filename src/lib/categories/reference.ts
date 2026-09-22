@@ -18,3 +18,7 @@ export type ReferenceData = z.infer<typeof referenceSchema>;
 export function referenceTitle(data: ReferenceData): string {
   return data.mode === "simple" ? data.text : data.name;
 }
+
+export function referenceSummary(data: ReferenceData): string {
+  return data.mode === "simple" ? "" : data.relationship;
+}

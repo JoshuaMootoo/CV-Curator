@@ -57,6 +57,17 @@ export function deleteNode(id: string): void {
   db.delete(nodes).where(eq(nodes.id, id)).run();
 }
 
+/** CVs that currently place this node, for the "used in CVs" delete warning. */
+export function listCvsUsingNode(nodeId: string): CvRow[] {
+  return db
+    .select({ cv: cvs })
+    .from(cvItems)
+    .innerJoin(cvs, eq(cvItems.cvId, cvs.id))
+    .where(eq(cvItems.nodeId, nodeId))
+    .all()
+    .map((row) => row.cv);
+}
+
 export function createCv(input: {
   name: string;
   targetRole?: string;

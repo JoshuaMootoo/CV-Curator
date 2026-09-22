@@ -1,20 +1,41 @@
 import type { CategoryConfig } from "./types";
-import { headerSchema, headerTitle, type HeaderData } from "./header";
-import { contactSchema, contactTitle, type ContactData } from "./contact";
-import { statementSchema, statementTitle, type StatementData } from "./statement";
-import { experienceSchema, experienceTitle, type ExperienceData } from "./experience";
-import { educationSchema, educationTitle, type EducationData } from "./education";
-import { skillSchema, skillTitle, type SkillData } from "./skill";
-import { projectSchema, projectTitle, type ProjectData } from "./project";
+import { headerSchema, headerTitle, headerSummary, type HeaderData } from "./header";
+import { contactSchema, contactTitle, contactSummary, type ContactData } from "./contact";
+import {
+  statementSchema,
+  statementTitle,
+  statementSummary,
+  type StatementData,
+} from "./statement";
+import {
+  experienceSchema,
+  experienceTitle,
+  experienceSummary,
+  type ExperienceData,
+} from "./experience";
+import {
+  educationSchema,
+  educationTitle,
+  educationSummary,
+  type EducationData,
+} from "./education";
+import { skillSchema, skillTitle, skillSummary, type SkillData } from "./skill";
+import { projectSchema, projectTitle, projectSummary, type ProjectData } from "./project";
 import {
   certificationSchema,
   certificationTitle,
+  certificationSummary,
   type CertificationData,
 } from "./certification";
-import { awardSchema, awardTitle, type AwardData } from "./award";
-import { interestSchema, interestTitle, type InterestData } from "./interest";
-import { referenceSchema, referenceTitle, type ReferenceData } from "./reference";
-import { customSchema, customTitle, type CustomData } from "./custom";
+import { awardSchema, awardTitle, awardSummary, type AwardData } from "./award";
+import { interestSchema, interestTitle, interestSummary, type InterestData } from "./interest";
+import {
+  referenceSchema,
+  referenceTitle,
+  referenceSummary,
+  type ReferenceData,
+} from "./reference";
+import { customSchema, customTitle, customSummary, type CustomData } from "./custom";
 
 export const categoryRegistry = {
   header: {
@@ -23,6 +44,7 @@ export const categoryRegistry = {
     sectionHeading: null,
     schema: headerSchema,
     deriveTitle: headerTitle,
+    deriveSummary: headerSummary,
     fields: [
       { name: "fullName", label: "Full name", kind: "text", required: true },
       { name: "headline", label: "Headline", kind: "text" },
@@ -35,6 +57,7 @@ export const categoryRegistry = {
     sectionHeading: null,
     schema: contactSchema,
     deriveTitle: contactTitle,
+    deriveSummary: contactSummary,
     fields: [
       {
         name: "type",
@@ -62,6 +85,7 @@ export const categoryRegistry = {
     sectionHeading: "Personal Statement",
     schema: statementSchema,
     deriveTitle: statementTitle,
+    deriveSummary: statementSummary,
     fields: [
       { name: "title", label: "Title (library only)", kind: "text", required: true },
       { name: "text", label: "Text", kind: "textarea", required: true },
@@ -74,6 +98,7 @@ export const categoryRegistry = {
     sectionHeading: "Experience",
     schema: experienceSchema,
     deriveTitle: experienceTitle,
+    deriveSummary: experienceSummary,
     fields: [
       { name: "role", label: "Role", kind: "text", required: true },
       { name: "organisation", label: "Organisation", kind: "text", required: true },
@@ -96,6 +121,7 @@ export const categoryRegistry = {
     sectionHeading: "Education",
     schema: educationSchema,
     deriveTitle: educationTitle,
+    deriveSummary: educationSummary,
     fields: [
       { name: "institution", label: "Institution", kind: "text", required: true },
       { name: "qualification", label: "Qualification", kind: "text", required: true },
@@ -119,6 +145,7 @@ export const categoryRegistry = {
     sectionHeading: "Skills",
     schema: skillSchema,
     deriveTitle: skillTitle,
+    deriveSummary: skillSummary,
     fields: [
       { name: "name", label: "Name", kind: "text", required: true },
       { name: "group", label: "Group", kind: "text", required: true, placeholder: "e.g. Languages" },
@@ -131,6 +158,7 @@ export const categoryRegistry = {
     sectionHeading: "Projects",
     schema: projectSchema,
     deriveTitle: projectTitle,
+    deriveSummary: projectSummary,
     fields: [
       { name: "name", label: "Name", kind: "text", required: true },
       { name: "subtitle", label: "Subtitle", kind: "text", placeholder: "e.g. tech used" },
@@ -147,6 +175,7 @@ export const categoryRegistry = {
     sectionHeading: "Certifications",
     schema: certificationSchema,
     deriveTitle: certificationTitle,
+    deriveSummary: certificationSummary,
     fields: [
       { name: "name", label: "Name", kind: "text", required: true },
       { name: "issuer", label: "Issuer", kind: "text", required: true },
@@ -161,6 +190,7 @@ export const categoryRegistry = {
     sectionHeading: "Awards",
     schema: awardSchema,
     deriveTitle: awardTitle,
+    deriveSummary: awardSummary,
     fields: [
       { name: "name", label: "Name", kind: "text", required: true },
       { name: "issuer", label: "Issuer", kind: "text", required: true },
@@ -175,6 +205,7 @@ export const categoryRegistry = {
     sectionHeading: "Interests",
     schema: interestSchema,
     deriveTitle: interestTitle,
+    deriveSummary: interestSummary,
     fields: [{ name: "text", label: "Text", kind: "text", required: true }],
   } satisfies CategoryConfig<InterestData>,
 
@@ -184,6 +215,7 @@ export const categoryRegistry = {
     sectionHeading: "References",
     schema: referenceSchema,
     deriveTitle: referenceTitle,
+    deriveSummary: referenceSummary,
     fields: [
       {
         name: "mode",
@@ -228,6 +260,7 @@ export const categoryRegistry = {
     sectionHeading: null,
     schema: customSchema,
     deriveTitle: customTitle,
+    deriveSummary: customSummary,
     fields: [
       { name: "sectionTitle", label: "Section title", kind: "text", required: true },
       { name: "heading", label: "Heading", kind: "text", required: true },

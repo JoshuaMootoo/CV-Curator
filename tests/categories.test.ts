@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { z } from "zod";
 import { headerSchema } from "@/lib/categories/header";
 import { contactSchema } from "@/lib/categories/contact";
 import { statementSchema } from "@/lib/categories/statement";
@@ -12,6 +13,7 @@ import { interestSchema } from "@/lib/categories/interest";
 import { referenceSchema } from "@/lib/categories/reference";
 import { customSchema } from "@/lib/categories/custom";
 import { categoryKeys, categoryRegistry } from "@/lib/categories/registry";
+import { yearMonthOptionalSchema } from "@/lib/categories/common";
 
 describe("category registry", () => {
   it("registers all categories from the spec", () => {
@@ -67,6 +69,31 @@ describe("category registry", () => {
       const parsed = config.schema.parse(cases[key]);
       expect(config.deriveTitle(parsed as never)).toBeTruthy();
     }
+  });
+});
+
+describe("yearMonthOptionalSchema", () => {
+  // A blank native <input type="month"> submits "", never omits the key, so this
+  // must tolerate both a missing key (undefined) and an empty string.
+  it("normalizes an empty string to undefined", () => {
+    expect(yearMonthOptionalSchema.parse("")).toBeUndefined();
+  });
+
+  it("accepts a missing value", () => {
+    expect(yearMonthOptionalSchema.parse(undefined)).toBeUndefined();
+  });
+
+  it("passes through a valid YYYY-MM string", () => {
+    expect(yearMonthOptionalSchema.parse("2021-06")).toBe("2021-06");
+  });
+
+  it("rejects a malformed string", () => {
+    expect(() => yearMonthOptionalSchema.parse("2021")).toThrow();
+  });
+
+  it("as an object field, tolerates the key being entirely absent", () => {
+    const schema = z.object({ endDate: yearMonthOptionalSchema });
+    expect(schema.parse({})).toEqual({ endDate: undefined });
   });
 });
 
@@ -136,6 +163,18 @@ describe("experienceSchema", () => {
         isCurrent: true,
       }),
     ).toThrow();
+  });
+
+  it("accepts the empty-string end date a blank month input submits", () => {
+    const parsed = experienceSchema.parse({
+      role: "Developer",
+      organisation: "Acme",
+      startDate: "2020-01",
+      endDate: "",
+      isCurrent: true,
+      bullets: [],
+    });
+    expect(parsed.endDate).toBeUndefined();
   });
 
   it("rejects a missing organisation", () => {
